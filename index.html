@@ -1,0 +1,290 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>ChatGosipt — Transcreva tudo. Privado. Offline.</title>
+<meta name="description" content="Transcreva áudios do WhatsApp, reuniões (Meet/Zoom/Teams) e vídeos — 100% privado e offline, com resumo automático por IA. Grátis para começar." />
+<meta property="og:title" content="ChatGosipt — Transcrição privada com IA" />
+<meta property="og:description" content="WhatsApp, reuniões e vídeos viram texto e resumo — sem sair do seu computador." />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#07090d; --bg2:#0d1219; --card:rgba(20,26,34,.6);
+    --gold:#e2c464; --gold-d:#c9a227; --jade:#2fae7d; --jade-l:#45cf99;
+    --text:#eae8e1; --muted:#98a2ad; --border:rgba(234,232,225,.1);
+    --serif:'Fraunces',serif; --sans:'Inter',sans-serif;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.6;overflow-x:hidden}
+  .bg{position:fixed;inset:0;z-index:-1;pointer-events:none;
+    background:radial-gradient(50rem 35rem at 10% -5%,rgba(201,162,39,.18),transparent 60%),radial-gradient(45rem 35rem at 100% 20%,rgba(47,174,125,.14),transparent 60%)}
+  a{color:inherit;text-decoration:none}
+  h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.1}
+  .wrap{max-width:1140px;margin:0 auto;padding:0 24px}
+  .grad{background:linear-gradient(110deg,#fff,#f3ead0 40%,var(--gold));-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent}
+  .btn{display:inline-flex;align-items:center;gap:8px;padding:13px 24px;border-radius:999px;font-weight:700;cursor:pointer;border:1px solid transparent;transition:transform .15s,box-shadow .3s,filter .2s;font-size:.95rem}
+  .btn-gold{background:linear-gradient(135deg,var(--gold),var(--gold-d));color:#14100a;box-shadow:0 6px 22px rgba(201,162,39,.3)}
+  .btn-gold:hover{transform:translateY(-2px);filter:brightness(1.06);box-shadow:0 10px 34px rgba(201,162,39,.5)}
+  .btn-ghost{border-color:var(--border);color:var(--text)}
+  .btn-ghost:hover{border-color:var(--gold);color:var(--gold)}
+  .eyebrow{font-family:var(--sans);font-size:.72rem;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);font-weight:700}
+
+  nav{position:sticky;top:0;z-index:50;backdrop-filter:blur(14px);background:rgba(7,9,13,.7);border-bottom:1px solid var(--border)}
+  .nav{display:flex;align-items:center;justify-content:space-between;padding:14px 24px;max-width:1140px;margin:0 auto}
+  .logo{display:flex;align-items:center;gap:10px;font-family:var(--serif);font-weight:600;font-size:1.15rem}
+  .logo .g{color:var(--gold)}
+  .nav-links{display:flex;gap:24px;align-items:center}
+  .nav-links a{color:var(--muted);font-size:.9rem}
+  .nav-links a:hover{color:var(--text)}
+
+  header.hero{padding:90px 0 70px;text-align:center}
+  .hero h1{font-size:clamp(2.4rem,5.5vw,4rem);letter-spacing:-.02em;margin-bottom:20px}
+  .hero p.sub{font-size:1.2rem;color:var(--muted);max-width:62ch;margin:0 auto 34px}
+  .hero .cta{display:flex;gap:14px;justify-content:center;flex-wrap:wrap}
+  .hero .note{margin-top:16px;font-size:.85rem;color:var(--muted)}
+
+  .trust{display:flex;gap:34px;justify-content:center;flex-wrap:wrap;padding:26px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-top:56px}
+  .trust div{text-align:center}
+  .trust .n{font-family:var(--serif);font-size:1.7rem;color:var(--gold)}
+  .trust .l{font-size:.8rem;color:var(--muted)}
+
+  section{padding:80px 0}
+  .sec-head{text-align:center;max-width:60ch;margin:0 auto 48px}
+  .sec-head h2{font-size:clamp(1.8rem,3.6vw,2.6rem);margin:12px 0 14px}
+  .sec-head p{color:var(--muted)}
+
+  .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:20px}
+  .feat{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:26px;backdrop-filter:blur(10px);transition:transform .25s,border-color .25s,box-shadow .25s}
+  .feat:hover{transform:translateY(-5px);border-color:rgba(201,162,39,.4);box-shadow:0 18px 40px rgba(0,0,0,.4)}
+  .feat .ic{font-size:1.8rem;margin-bottom:12px}
+  .feat h3{font-size:1.15rem;margin-bottom:8px}
+  .feat p{color:var(--muted);font-size:.94rem}
+
+  /* comparativo */
+  .cmp{overflow-x:auto}
+  table{width:100%;border-collapse:collapse;min-width:640px}
+  th,td{padding:14px 16px;text-align:center;border-bottom:1px solid var(--border);font-size:.92rem}
+  th{font-family:var(--sans);font-weight:600;color:var(--muted)}
+  td:first-child,th:first-child{text-align:left;color:var(--text)}
+  .col-us{background:linear-gradient(180deg,rgba(201,162,39,.08),transparent);border-left:1px solid rgba(201,162,39,.3);border-right:1px solid rgba(201,162,39,.3)}
+  .yes{color:var(--jade-l);font-weight:700}
+  .no{color:#ff6b6b}
+
+  /* download */
+  .dl-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:16px}
+  .dl{background:var(--card);border:1px solid var(--border);border-radius:16px;padding:24px;text-align:center}
+  .dl .plat{font-size:2rem}
+  .dl h3{font-size:1.05rem;margin:8px 0 4px}
+  .dl small{color:var(--muted);display:block;margin-bottom:14px;min-height:32px}
+  .dl a{width:100%}
+  .dl .soon{opacity:.55}
+
+  /* planos */
+  .plans{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:18px;align-items:stretch}
+  .plan{background:var(--card);border:1px solid var(--border);border-radius:18px;padding:28px 22px;display:flex;flex-direction:column}
+  .plan.best{border-color:var(--gold);box-shadow:0 0 40px rgba(201,162,39,.15);position:relative}
+  .plan.best::before{content:'MAIS POPULAR';position:absolute;top:-11px;left:50%;transform:translateX(-50%);background:linear-gradient(135deg,var(--gold),var(--gold-d));color:#14100a;font-size:.62rem;font-weight:800;letter-spacing:.1em;padding:4px 12px;border-radius:999px}
+  .plan .name{font-weight:700;font-size:1.05rem;margin-bottom:4px}
+  .plan .off{font-size:.72rem;color:var(--jade-l);font-weight:700;min-height:16px}
+  .plan .price{font-family:var(--serif);font-size:2.3rem;color:var(--gold);margin:8px 0 2px}
+  .plan .price small{font-size:.9rem;color:var(--muted);font-family:var(--sans)}
+  .plan .bill{font-size:.8rem;color:var(--muted);min-height:34px;margin-bottom:14px}
+  .plan ul{list-style:none;margin:0 0 20px;font-size:.88rem;color:var(--muted);flex:1}
+  .plan li{padding:5px 0 5px 22px;position:relative}
+  .plan li::before{content:'✓';position:absolute;left:0;color:var(--jade-l);font-weight:700}
+  .plan .btn{width:100%;justify-content:center}
+
+  /* faq */
+  .faq details{background:var(--card);border:1px solid var(--border);border-radius:12px;padding:16px 20px;margin-bottom:12px}
+  .faq summary{cursor:pointer;font-weight:600;list-style:none}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq p{color:var(--muted);margin-top:10px;font-size:.92rem}
+
+  footer{padding:44px 24px;text-align:center;color:var(--muted);font-size:.82rem;border-top:1px solid var(--border)}
+  @media(max-width:600px){.nav-links{display:none}}
+</style>
+</head>
+<body>
+<div class="bg"></div>
+
+<nav>
+  <div class="nav">
+    <div class="logo">💬 Chat<span class="g">Gosipt</span></div>
+    <div class="nav-links">
+      <a href="#beneficios">Benefícios</a>
+      <a href="#comparativo">Comparar</a>
+      <a href="#planos">Planos</a>
+      <a href="#download" class="btn btn-gold" style="padding:8px 18px">Baixar grátis</a>
+    </div>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <span class="eyebrow">Transcrição com IA · 100% privada</span>
+    <h1><span class="grad">Toda conversa vira texto.</span><br>Sem sair do seu computador.</h1>
+    <p class="sub">Transcreva áudios do WhatsApp, reuniões (Meet, Zoom, Teams) e vídeos — com resumo automático por IA. Rápido, offline e privado. O nome é brincadeira; a privacidade é séria.</p>
+    <div class="cta">
+      <a href="#download" class="btn btn-gold">⬇️ Baixar grátis</a>
+      <a href="#planos" class="btn btn-ghost">Ver planos</a>
+    </div>
+    <p class="note">100% offline · <b>sem pagar por minuto ou token</b> · grátis para começar, sem cartão.</p>
+
+    <div class="trust">
+      <div><div class="n">100%</div><div class="l">offline · sem tokens</div></div>
+      <div><div class="n">4</div><div class="l">IAs (llama·Gemini·GPT·Claude)</div></div>
+      <div><div class="n">Meet·Zoom·Teams</div><div class="l">reuniões sem bot</div></div>
+      <div><div class="n">WhatsApp</div><div class="l">áudio em 2 toques</div></div>
+    </div>
+  </div>
+</header>
+
+<section id="beneficios">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Por que ChatGosipt</span>
+      <h2>Tudo que você fala, ouve ou grava — organizado por IA</h2>
+      <p>Os benefícios que os concorrentes na nuvem não entregam.</p>
+    </div>
+    <div class="grid">
+      <div class="feat"><div class="ic">🔒</div><h3>100% privado e offline</h3><p>O áudio é processado na sua máquina com Whisper local. Nada sobe para a nuvem e <b>você não paga por minuto nem por token</b> — diferente de Otter, Fireflies e NoteGPT.</p></div>
+      <div class="feat"><div class="ic">💬</div><h3>Áudio do WhatsApp</h3><p>Aquele áudio de 5 minutos vira texto e resumo em 2 toques, pelo Atalho do iPhone. Nenhum concorrente faz isso bem.</p></div>
+      <div class="feat"><div class="ic">🎥</div><h3>Reuniões sem bot</h3><p>Extensão do Chrome captura o áudio da aba (Meet, Zoom, Teams). Ninguém entra na call, ninguém fica sabendo.</p></div>
+      <div class="feat"><div class="ic">🧠</div><h3>Multi-IA</h3><p>Resuma com o <b>llama local</b> (offline) ou conecte <b>Gemini, GPT e Claude</b> quando quiser o melhor. Você escolhe.</p></div>
+      <div class="feat"><div class="ic">⚡</div><h3>Resumo automático</h3><p>Pontos principais, decisões e tarefas saem prontos ao terminar a transcrição — sem clicar em nada.</p></div>
+      <div class="feat"><div class="ic">🌍</div><h3>Idiomas, links e legendas</h3><p>PT, EN, ES e mais. Transcreve links de YouTube/Instagram/TikTok e exporta <b>.txt</b> e <b>.srt</b> (legendas).</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="comparativo" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Comparativo</span>
+      <h2>ChatGosipt vs. os outros</h2>
+    </div>
+    <div class="cmp">
+      <table>
+        <thead><tr><th>Recurso</th><th class="col-us">ChatGosipt</th><th>Otter</th><th>Fireflies</th><th>NoteGPT</th></tr></thead>
+        <tbody>
+          <tr><td>Funciona offline</td><td class="col-us yes">Sim</td><td class="no">Não</td><td class="no">Não</td><td class="no">Não</td></tr>
+          <tr><td>Áudio nunca sai do PC</td><td class="col-us yes">Sim</td><td class="no">Não</td><td class="no">Não</td><td class="no">Não</td></tr>
+          <tr><td>Transcreve WhatsApp</td><td class="col-us yes">Sim</td><td class="no">Não</td><td class="no">Não</td><td class="no">Não</td></tr>
+          <tr><td>Reunião sem bot</td><td class="col-us yes">Sim</td><td>Parcial</td><td class="no">Não</td><td>Parcial</td></tr>
+          <tr><td>Escolher a IA (GPT/Gemini/Claude)</td><td class="col-us yes">Sim</td><td class="no">Não</td><td class="no">Não</td><td>Parcial</td></tr>
+          <tr><td>Plano grátis útil</td><td class="col-us yes">10/mês</td><td>300 min</td><td>800 min</td><td>15/mês</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section id="download">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Download</span>
+      <h2>Baixe e comece em minutos</h2>
+      <p>Desktop instala de verdade. Celular usa o Atalho conectado ao seu computador.</p>
+    </div>
+    <div class="dl-grid">
+      <div class="dl"><div class="plat">🍎</div><h3>macOS</h3><small>Instalador + app na Área de Trabalho</small><a class="btn btn-gold" href="downloads/ChatGosipt.zip" download>Baixar</a></div>
+      <div class="dl"><div class="plat">🪟</div><h3>Windows</h3><small>Instalador .bat (Python + app)</small><a class="btn btn-gold" href="downloads/ChatGosipt.zip" download>Baixar</a></div>
+      <div class="dl"><div class="plat">🐧</div><h3>Linux</h3><small>Script de instalação (.sh)</small><a class="btn btn-gold" href="downloads/ChatGosipt.zip" download>Baixar</a></div>
+      <div class="dl"><div class="plat">📱</div><h3>iPhone / iPad</h3><small>Atalho conectado ao Mac (mesma Wi-Fi)</small><a class="btn btn-ghost" href="#faq">Como usar</a></div>
+      <div class="dl soon"><div class="plat">🤖</div><h3>Android</h3><small>Em breve (via app/PWA)</small><a class="btn btn-ghost" style="pointer-events:none">Em breve</a></div>
+      <div class="dl"><div class="plat">🧩</div><h3>Extensão Chrome</h3><small>Para reuniões (Meet/Zoom/Teams)</small><a class="btn btn-gold" href="downloads/ChatGosipt.zip" download>Instalar</a></div>
+    </div>
+    <p style="margin-top:26px;text-align:center">
+      <a href="instalacao.html" class="btn btn-ghost">📖 Guia de instalação passo a passo — PT · EN · ES</a>
+    </p>
+  </div>
+</section>
+
+<section id="planos" style="background:var(--bg2)">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Planos</span>
+      <h2>Grátis offline para sempre. Pro quando quiser turbinar.</h2>
+      <p>O uso local não custa nada — <b>sem pagar por minuto ou token</b>. O Pro adiciona as IAs de nuvem (GPT/Gemini/Claude) e extras.</p>
+    </div>
+    <div class="plans">
+      <div class="plan">
+        <div class="name">Grátis · Offline</div><div class="off">PARA SEMPRE</div>
+        <div class="price">US$ 0</div>
+        <div class="bill">Sem cartão, sem limite de uso local</div>
+        <ul><li>Transcrição local ilimitada</li><li>Resumo com llama (offline)</li><li>WhatsApp, arquivos e links</li><li>Sem custo por minuto/token</li><li>10 resumos de nuvem/mês (degustação)</li></ul>
+        <a class="btn btn-ghost" href="#download">Baixar grátis</a>
+      </div>
+      <div class="plan">
+        <div class="name">Pro · Mensal</div><div class="off">&nbsp;</div>
+        <div class="price">US$ 12,90<small>/mês</small></div>
+        <div class="bill">Cobrado mensalmente</div>
+        <ul><li>Tudo do grátis</li><li>Gemini, GPT e Claude ilimitados</li><li>Reuniões sem bot</li><li>Sincronização + suporte prioritário</li></ul>
+        <a class="btn btn-gold" onclick="assinar('mensal')">Assinar</a>
+      </div>
+      <div class="plan">
+        <div class="name">Pro · Trimestral</div><div class="off">10% OFF</div>
+        <div class="price">US$ 11,61<small>/mês</small></div>
+        <div class="bill">US$ 34,83 a cada 3 meses</div>
+        <ul><li>Tudo do Pro</li><li>10% de desconto</li></ul>
+        <a class="btn btn-ghost" onclick="assinar('trimestral')">Assinar</a>
+      </div>
+      <div class="plan best">
+        <div class="name">Pro · Anual</div><div class="off">32% OFF</div>
+        <div class="price">US$ 8,77<small>/mês</small></div>
+        <div class="bill">US$ 105,26 por ano (economize ~US$ 50)</div>
+        <ul><li>Tudo do Pro</li><li>Maior desconto</li><li>~4 meses grátis no ano</li></ul>
+        <a class="btn btn-gold" onclick="assinar('anual')">Assinar com 32% OFF</a>
+      </div>
+      <div class="plan">
+        <div class="name">Pro · Semestral</div><div class="off">20% OFF</div>
+        <div class="price">US$ 10,32<small>/mês</small></div>
+        <div class="bill">US$ 61,92 a cada 6 meses</div>
+        <ul><li>Tudo do Pro</li><li>20% de desconto</li></ul>
+        <a class="btn btn-ghost" onclick="assinar('semestral')">Assinar</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq" class="faq">
+  <div class="wrap" style="max-width:820px">
+    <div class="sec-head"><span class="eyebrow">Dúvidas</span><h2>Perguntas frequentes</h2></div>
+    <details><summary>É realmente offline e privado?</summary><p>Sim. A transcrição roda na sua máquina com Whisper local. Se você usar o resumo com o llama local, nada sai do computador. Só sai da máquina se você <b>escolher</b> usar Gemini/GPT/Claude na nuvem.</p></details>
+    <details><summary>Como funciona no iPhone?</summary><p>O iPhone usa um <b>Atalho</b> que envia o áudio para o app rodando no seu Mac (mesma rede Wi-Fi). Você compartilha o áudio do WhatsApp e recebe o texto de volta. App nativo da App Store está no roadmap.</p></details>
+    <details><summary>Preciso pagar para usar?</summary><p>Não para começar: o plano grátis dá 10 transcrições por mês. Os planos pagos liberam uso ilimitado e as IAs de nuvem (Gemini/GPT/Claude).</p></details>
+    <details><summary>Funciona com Zoom e Google Meet?</summary><p>Sim — a extensão do Chrome captura o áudio da aba da reunião (sem bot entrando na chamada) e transcreve pelo ChatGosipt local.</p></details>
+  </div>
+</section>
+
+<footer>
+  <p>© 2026 ChatGosipt · Transcrição privada com IA · Ciência · Inteligência · Privacidade</p>
+</footer>
+
+<script>
+  // ================================================================
+  // COLE AQUI SEUS LINKS DA STRIPE (Payment Links) — um por plano.
+  // Crie em: https://dashboard.stripe.com/payment-links
+  // Não precisa de chave secreta nem servidor.
+  // ================================================================
+  const STRIPE_LINKS = {
+    mensal:     "",   // ex.: https://buy.stripe.com/xxxxxxxx
+    trimestral: "",
+    semestral:  "",
+    anual:      "",
+  };
+  function assinar(plano){
+    const url = STRIPE_LINKS[plano];
+    if(!url){
+      alert("⚙️ Configure o link da Stripe para o plano \""+plano+"\".\n\nAbra o index.html e cole a URL em STRIPE_LINKS."+
+            "\nCrie os links em: dashboard.stripe.com/payment-links");
+      return;
+    }
+    window.location.href = url;
+  }
+</script>
+</body>
+</html>
