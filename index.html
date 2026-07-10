@@ -104,6 +104,7 @@
   .faq p{color:var(--muted);margin-top:10px;font-size:.92rem}
 
   footer{padding:44px 24px;text-align:center;color:var(--muted);font-size:.82rem;border-top:1px solid var(--border)}
+  @media(max-width:700px){.mock-grid{grid-template-columns:1fr !important}}
   @media(max-width:600px){.nav-links{display:none}}
 </style>
 </head>
@@ -124,6 +125,8 @@
 
 <header class="hero">
   <div class="wrap">
+    <img src="img/app-icon.png" alt="ChatGosipt" width="92" style="border-radius:22px;margin-bottom:20px;box-shadow:0 14px 36px rgba(0,0,0,.5)">
+    <br>
     <span class="eyebrow">Transcrição com IA · 100% privada</span>
     <h1><span class="grad">Toda conversa vira texto.</span><br>Sem sair do seu computador.</h1>
     <p class="sub">Transcreva áudios do WhatsApp, reuniões (Meet, Zoom, Teams) e vídeos — com resumo automático por IA. Rápido, offline e privado. O nome é brincadeira; a privacidade é séria.</p>
@@ -141,6 +144,49 @@
     </div>
   </div>
 </header>
+
+<section id="acao">
+  <div class="wrap">
+    <div class="sec-head">
+      <span class="eyebrow">Veja em ação</span>
+      <h2>Do áudio ao resumo — em segundos</h2>
+      <p>Solte um áudio do WhatsApp ou grave a reunião. O ChatGosipt transcreve, resume e organiza — tudo local.</p>
+    </div>
+
+    <div style="max-width:940px;margin:0 auto;border:1px solid var(--border);border-radius:16px;overflow:hidden;background:#0d1219;box-shadow:0 30px 70px rgba(0,0,0,.55)">
+      <div style="display:flex;align-items:center;gap:8px;padding:12px 16px;background:#12181f;border-bottom:1px solid var(--border)">
+        <span style="width:11px;height:11px;border-radius:50%;background:#ff5f57"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:#febc2e"></span>
+        <span style="width:11px;height:11px;border-radius:50%;background:#28c840"></span>
+        <span style="margin-left:12px;font-size:.78rem;color:var(--muted)">127.0.0.1:7860 — ChatGosipt</span>
+      </div>
+      <div class="mock-grid" style="padding:24px;display:grid;grid-template-columns:1fr 1fr;gap:20px">
+        <div>
+          <div style="font-size:.7rem;color:var(--gold);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Transcrição</div>
+          <div style="background:#0a0e14;border:1px solid var(--border);border-radius:10px;padding:14px;font-size:.86rem;color:#cfd3da;line-height:1.65">
+            "Oi, pessoal! Na reunião de hoje ficou definido que a gente entrega a primeira versão na sexta. O cliente aprovou o orçamento. Pedro fica com o backend, Maria com o frontend. Prazo final: 30 de agosto…"
+          </div>
+        </div>
+        <div>
+          <div style="font-size:.7rem;color:var(--jade-l);text-transform:uppercase;letter-spacing:.08em;margin-bottom:8px">Resumo automático · IA local</div>
+          <ul style="list-style:none;margin:0;padding:0;font-size:.86rem;color:#cfd3da;line-height:1.95">
+            <li>✓ Entrega da 1ª versão: <b>sexta-feira</b></li>
+            <li>✓ Orçamento aprovado pelo cliente</li>
+            <li>✓ Pedro → backend · Maria → frontend</li>
+            <li>✓ Prazo final: <b>30 de agosto</b></li>
+          </ul>
+          <img src="img/nuvem.png" alt="Diagrama de palavras mais faladas" style="width:100%;border-radius:8px;margin-top:14px;border:1px solid var(--border)">
+        </div>
+      </div>
+    </div>
+
+    <div class="grid" style="margin-top:44px">
+      <div class="feat"><div class="ic">⏱️</div><h3>Áudio de 8 min do WhatsApp</h3><p>Vira texto + resumo em segundos. Nunca mais perca tempo ouvindo áudio longo.</p></div>
+      <div class="feat"><div class="ic">📋</div><h3>Reunião de 1 hora</h3><p>Sai em tópicos com decisões e próximos passos, prontos para copiar e colar.</p></div>
+      <div class="feat"><div class="ic">🔠</div><h3>Diagrama de palavras</h3><p>Veja num relance os temas mais falados de qualquer conversa ou reunião.</p></div>
+    </div>
+  </div>
+</section>
 
 <section id="beneficios">
   <div class="wrap">
@@ -266,7 +312,9 @@
 </section>
 
 <footer>
-  <p>© 2026 ChatGosipt · Transcrição privada com IA · Ciência · Inteligência · Privacidade</p>
+  <p><b>ChatGosipt</b> — Transcrição privada com IA</p>
+  <p style="margin-top:8px">© 2026 <b>SOSAI</b> · Sóstenes Costa Paiva. Todos os direitos reservados.</p>
+  <p style="margin-top:4px;opacity:.7">Marca e software de propriedade de Sóstenes Costa Paiva (SOSAI).</p>
 </footer>
 
 <script>
